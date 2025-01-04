@@ -6,6 +6,8 @@ on:
 jobs:
   create-structure:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Ensure write permissions for the repo
 
     steps:
     - name: Checkout Repository
