@@ -11,6 +11,11 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
+    - name: Configure Git
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
     - name: Create Folders and Files
       run: |
         mkdir -p data_ingestion feature_engineering models api visualization tests utils
@@ -32,12 +37,9 @@ jobs:
         touch utils/logger.py
         touch utils/config_loader.py
         touch utils/constants.py
-        echo "# Placeholder" > README.md
 
     - name: Commit and Push Changes
       run: |
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
         git add .
-        git commit -m "Initial folder and file structure"
-        git push
+        git commit -m "Created initial folder and file structure"
+        git push origin main --force
