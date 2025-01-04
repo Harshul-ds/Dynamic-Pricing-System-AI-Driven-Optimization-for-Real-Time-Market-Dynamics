@@ -1,0 +1,43 @@
+name: Create Project Structure
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-structure:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Create Folders and Files
+      run: |
+        mkdir -p data_ingestion feature_engineering models api visualization tests utils
+        touch data_ingestion/kafka_consumer.py
+        touch data_ingestion/batch_ingestion.py
+        touch feature_engineering/feature_generator.py
+        touch models/demand_forecasting.py
+        touch models/price_elasticity.py
+        touch models/rl_optimizer.py
+        touch models/model_utils.py
+        touch api/app.py
+        touch api/routes.py
+        touch visualization/dashboard.py
+        touch visualization/plot_utils.py
+        touch tests/test_data_ingestion.py
+        touch tests/test_feature_engineering.py
+        touch tests/test_models.py
+        touch tests/test_api.py
+        touch utils/logger.py
+        touch utils/config_loader.py
+        touch utils/constants.py
+        echo "# Placeholder" > README.md
+
+    - name: Commit and Push Changes
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add .
+        git commit -m "Initial folder and file structure"
+        git push
